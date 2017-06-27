@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      
+      class Header extends React.Component{
+        render(){
+          return (
+            <h1 style = {{color:'red'}}> Header </h1>
+          )
+        }
+      }
+
+      class Footer extends React.Component{
+        render(){
+          return (
+            <h1 style = {{color:'green'}}> Footer </h1>
+          )
+        }
+      }
+
+      class Body extends React.Component{
+        render(){
+          return (
+            <div style = {{display:'flex'}}>
+              <Aside />
+              <MainSection />
+            </div>
+          )
+        }
+      }
+
+      class Aside extends React.Component{
+        render(){
+          return (
+            <h1 style = {{color:'orange'}}> Aside </h1>
+          )
+        }
+      }
+
+      class MainSection extends React.Component{
+        render(){
+          return (
+            <h1 style = {{color:'blue'}}> Main Section </h1>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        (
+          <div>
+            <Header />
+            <Body />
+            <Footer />
+          </div>
+        ),
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

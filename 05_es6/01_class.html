@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+class Rectangle{
+	constructor(height, width){
+		this.height = height;
+		this.width = width;
+	}
+	calculateArea(){
+		return this.height * this.width;
+	}
+}
+
+var rect = new Rectangle(5,6);
+console.log("The area of rectangle is :", rect.calculateArea());
+
+class Square extends Rectangle{
+	constructor(side){
+		super(side, side);
+	}
+}
+
+let sq = new Square(5);
+console.log("The area of square is :", sq.calculateArea());
+
+
+
+</script>	
+</body>
+</html>

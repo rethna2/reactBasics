@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class CountDown extends React.Component{
+      constructor(){
+        super();
+        this.state = {
+          tick:100
+        }
+        
+        var interval = setInterval(() => {
+          this.setState({tick:this.state.tick - 1});
+        }, 1000);
+      }
+
+      render(){
+        return (
+          <div>
+             {this.state.tick} 
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+        <div>
+          <CountDown />
+          <CountDown />
+          <CountDown />
+        </div>,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

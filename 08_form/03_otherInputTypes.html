@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      class SimpleForm extends React.Component{
+        
+        constructor(){
+          super();
+          this.state = {
+            isMember:true,
+            favColor:'red',
+            interests: {react:true, angular:false, backbone:true},
+            comments:"This is a very long text!"
+          }
+        }
+
+        onInterestsChange = (str) => {
+          this.setState((prevState) => {
+            let interests = Object.assign({}, prevState.interests);
+            interests[str] = !prevState.interests[str];
+            console.dir(interests);
+            return  {interests:interests}
+          });
+        }
+
+        render(){
+          return (
+            <div>
+              <div>
+                <input type = "radio" name = "isMember" checked = {this.state.isMember}
+                  onChange = {(e) => this.setState({isMember:true})} /> Yes
+                <input type = "radio" name = "isMember" checked = {!this.state.isMember}
+                  onChange = {(e) => this.setState({isMember:false})} /> No
+              </div>
+              <div>
+                <select value = {this.state.favColor} onChange = {(e) => {this.setState({favColor:e.target.value})}}>
+                  <option value = 'red'>Red </option>
+                  <option value = 'green'>Green </option>
+                  <option value = 'blue'>Blue </option>
+                </select>
+              </div>
+              <div>
+                <textArea value = {this.state.comments} onChange = {(e) => {this.setState({comments:e.target.value})}} />
+              </div>
+              <div>
+                <input type = "checkbox" checked = {this.state.interests['react']}
+                  onChange = {() => this.onInterestsChange("react")} /> React
+                <input type = "checkbox" checked = {this.state.interests['angular']}
+                  onChange = {() => this.onInterestsChange("angular")} /> Angular
+                <input type = "checkbox" checked = {this.state.interests['backbone']}
+                  onChange = {() => this.onInterestsChange("backbone")} /> Backbone
+              </div>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <SimpleForm />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Thinking in React</title>
+	<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<div id = "root"></div>
+	<script type="text/babel">
+		
+	class SimpleForm extends React.Component{
+        
+        getAns = () => {
+			this.ans.innerText = Number(this.num1.value) 
+								+ Number(this.num2.value)
+        }
+
+        render(){
+          return (
+            <div>
+              <input type = "text" ref = {(n) => this.num1 = n} /> 
+              {" + "}
+        	  <input type = "text" ref = {(n) => this.num2 = n} />
+        	  {" = "}
+        	  <span ref = {(n) => this.ans = n} /><br/>
+        	  <button onClick = {this.getAns}> Submit </button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <SimpleForm />,
+        document.getElementById('root')
+      );
+	</script>
+</body>
+</html>

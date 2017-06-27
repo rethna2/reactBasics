@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      class SimpleForm extends React.Component{
+        constructor(){
+          super();
+          this.state = {
+            cardNo:''
+          }
+        }
+
+        onCardNoChange = (e) => {
+          let cardNo = e.target.value;
+          cardNo = cardNo.replace(/-/g, '');
+
+          if(/^[0-9]{0,16}$/.test(cardNo)){
+              this.setState({cardNo});
+          }
+        }
+
+        getFormattedCardNo = (str) => {
+          let arrLike = str.match(/\d{1,4}/g);
+          if(!arrLike || !arrLike.length){
+              return "";
+          }
+          str = '';
+          for(var i = 0; i < arrLike.length; i++){
+              if(i == arrLike.length - 1 && arrLike[i].length != 4 || i >2){
+                  str += arrLike[i];
+              }else{
+                  str += arrLike[i] + "-";
+              }
+          }
+          return str;
+        }
+
+        render(){
+          return (
+            <div>
+              <input type = "text" 
+              value = {this.getFormattedCardNo(this.state.cardNo)} 
+              onChange = {this.onCardNoChange} />
+            </div>
+              )
+        }
+      }
+
+      ReactDOM.render(
+        <SimpleForm />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
